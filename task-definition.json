@@ -1,0 +1,30 @@
+{
+    "family": "assessment-backend",
+    "networkMode": "awsvpc",
+    "requiresCompatibilities": ["FARGATE"],
+    "cpu": "1024",
+    "memory": "3072",
+    "executionRoleArn": "arn:aws:iam::058264269407:role/ecsTaskExecutionRole",
+    "containerDefinitions": [
+      {
+        "name": "assessment-backend-container",
+        "image": "058264269407.dkr.ecr.ap-southeast-2.amazonaws.com/assessment/backend:latest",
+        "portMappings": [
+          {
+            "containerPort": 8000,
+            "protocol": "tcp"
+          }
+        ],
+        "essential": true,
+        "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+            "awslogs-group": "/ecs/assessment-backend-task",
+            "awslogs-region": "ap-southeast-2",
+            "awslogs-stream-prefix": "ecs"
+        }
+        }
+      }
+    ]
+  }
+  
